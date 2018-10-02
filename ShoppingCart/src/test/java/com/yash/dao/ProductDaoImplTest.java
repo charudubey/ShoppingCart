@@ -38,7 +38,7 @@ public class ProductDaoImplTest {
 		doNothing().when(entityManager).persist(product);
 		Product actual = productDaoImpl.addProduct(product);
 
-		assertEquals(actual.getProductId(), actual.getProductId());
+		assertEquals(actual.getProductId(), product.getProductId());
 		Mockito.verify(entityManager).persist(product);
 	}
 	
@@ -58,7 +58,7 @@ public class ProductDaoImplTest {
 	}
 	
 	@Test
-	public void shouldUpdateCustomer(){
+	public void shouldUpdateProduct(){
 		Product product = new Product();
 		product.setProductId(1);
 		product.setProductName("Mobile Device");
@@ -72,14 +72,14 @@ public class ProductDaoImplTest {
 	}
 	
 	@Test
-	public void shouldDeleteCustomer(){
+	public void shouldDeleteProduct(){
 		Product product = new Product();
 		product.setProductId(1);
 		product.setProductName("Mobile Device");
 		product.setPrice(5000);
 		
 		doNothing().when(entityManager).remove(product);
-		Product actual = productDaoImpl.updateProduct(product);
+		Product actual = productDaoImpl.deleteProduct(product);
 		
 		assertEquals("Mobile Device", actual.getProductName());
 		Mockito.verify(entityManager).remove(product);
